@@ -1,0 +1,74 @@
+-------------------------------------------------- 1. Two Sum ----------------------------------------------------------
+
+Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+You can return the answer in any order.
+
+Example 1:
+
+Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
+Example 2:
+
+Input: nums = [3,2,4], target = 6
+Output: [1,2]
+Example 3:
+
+Input: nums = [3,3], target = 6
+Output: [0,1]
+
+Solution :
+
+Initialize an empty hashmap:
+    A hashmap data structure is used to efficiently store elements from the array along with their indices.
+    This allows for constant-time lookup to check if a complement exists in the hashmap.
+
+Iterate through the array:
+    We traverse the input array to examine each element and determine if its complement
+    (the value needed to reach the target) exists in the hashmap.
+
+Calculate the complement:
+    For each element in the array, we compute its complement by subtracting the element's value from the target sum.
+    This complement represents the value needed to reach the target when added to the current element.
+
+Check if the complement exists in the hashmap:
+    We look up the complement in the hashmap. If it's found, it means that the current element, along with its
+    complement,forms a pair that sums up to the target value.
+
+Return the indices of the pair:
+    If the complement is found in the hashmap, we return the indices of the current element and its complement
+    (stored in the hashmap). These indices represent the positions of the two elements in the original array.
+
+Store the current element in the hashmap:
+    If the complement is not found in the hashmap, we store the current element along with its index in the hashmap.
+    This allows us to later retrieve the index of the complement if it appears later in the array.
+
+Return an empty array if no pair is found:
+    If we iterate through the entire array without finding a pair that sums up to the target,
+    we return an empty array to indicate that no such pair exists.
+
+
+pseudocode -
+
+function Solution(arr, target):
+    // Initialize an empty hashmap
+    hashMap = HashMap()
+
+    // Iterate through the array
+    for i from 0 to length of arr - 1:
+        // Calculate the complement of the current element to reach the target
+        complement = target - arr[i]
+
+        // Check if the complement exists in the hashmap
+        if hashMap contains key complement:
+            // If found, return the indices of the two elements that sum up to the target
+            return [hashMap[complement], i]
+        else:
+            // If not found, store the current element along with its index in the hashmap
+            hashMap[arr[i]] = i
+
+    // If no such pair is found, return an empty array
+    return []
