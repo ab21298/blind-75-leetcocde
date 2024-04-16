@@ -1,0 +1,71 @@
+------------------------------- 121. Best Time to Buy and Sell Stock ---------------------------------------------------
+
+
+You are given an array prices where prices[i] is the price of a given stock on the ith day.
+
+You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future
+to sell that stock.
+
+Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+
+
+
+Example 1:
+
+Input: prices = [7,1,5,3,6,4]
+Output: 5
+Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
+Note that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.
+Example 2:
+
+Input: prices = [7,6,4,3,1]
+Output: 0
+Explanation: In this case, no transactions are done and the max profit = 0.
+
+
+Solution :
+
+
+Initialize Variables:
+    profit is initialized to 0 to keep track of the maximum profit obtained.
+    min_price is initialized to the first element of the prices array. This represents the minimum price seen so far.
+
+Iterate Through Prices Array:
+    The loop starts from index 1 since we've already set the minimum price to the first element.
+    For each subsequent price in the array:
+
+Calculate Temporary Profit:
+    temp is calculated as the difference between the current price (prices[i]) and the minimum price seen so far
+    (min_price).
+    This represents the potential profit if we sell the stock at the current price.
+
+Update Maximum Profit:
+    If the temporary profit (temp) is greater than the current maximum profit (profit), we update profit to temp.
+    This ensures that profit always holds the maximum profit seen so far.
+
+Update Minimum Price:
+    min_price is updated to be the minimum of the current min_price and the current price (prices[i]).
+    This ensures that min_price always holds the lowest price seen so far.
+
+Return Maximum Profit:
+    After iterating through all prices, the function returns the maximum profit (profit).
+
+
+The reason for following these steps is to efficiently find the maximum profit that can be obtained by buying the stock
+at the lowest price and selling it at the highest price. By iterating through the prices array only once, and keeping
+track of the minimum price and updating the maximum profit as needed, we can achieve this in linear time complexity,
+making the algorithm efficient.
+
+pseudocode -
+
+maxProfit(prices):
+    profit = 0
+    min_price = prices[0]
+
+    for i from 1 to length(prices) - 1:
+        temp = prices[i] - min_price
+        if temp > profit:
+            profit = temp
+        min_price = min(min_price, prices[i])
+
+    return profit
