@@ -1,0 +1,11 @@
+Input: s = "GeeksforGeeks"
+Output: "skeeGrofskeeG"
+Explanation : The first character G moves to last position, the second character e moves to second-last and so on.
+
+Input: s = "abdcfe"
+Output: "efcdba"
+Explanation: The first character a moves to last position, the second character b moves to second-last and so on.
+
+Constraints:
+1 <= s.size() <= 106
+s contains only alphabetic characters (both uppercase and lowercase).
